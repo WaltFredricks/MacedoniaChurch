@@ -12,7 +12,7 @@ This repository contains a modern, single-page website, a comprehensive historic
 
 ## License
 
-This project is licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0). You are free to:
+This project is licensed under Creative Commons Zero v1.0 Universal. You are free to:
 - Share: Copy and redistribute the material in any medium or format.
 - Adapt: Remix, transform, and build upon the material for any purpose, even commercially.
 
