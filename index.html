@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Macedonia Baptist Church - Douglas, GA | No Limits</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #f39c12;
+            --text-light: #ecf0f1;
+            --text-dark: #2c3e50;
+            --bg-light: #ffffff;
+            --bg-dark: #34495e;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 400;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem; /* Touch-friendly padding */
+            border-radius: 5px;
+        }
+        .nav-links a:hover {
+            color: var(--secondary-color);
+            background: rgba(52, 152, 219, 0.1);
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-color);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+        section {
+            padding: 5rem 5%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        #hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover;
+            color: var(--text-light);
+            text-align: center;
+        }
+        #hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+        #hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 1s ease 0.4s both;
+            min-width: 200px; /* Touch-friendly */
+            text-align: center;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+        #about {
+            background: var(--bg-light);
+        }
+        #about h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+        .history-timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .timeline-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .timeline-item:hover {
+            transform: translateY(-5px);
+        }
+        .timeline-item h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        #services {
+            background: var(--bg-dark);
+            color: var(--text-light);
+        }
+        #services h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .service-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+        .service-card:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        .service-card i {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        #ministries {
+            background: var(--bg-light);
+        }
+        #ministries h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+        .ministries-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+        .ministry-tag {
+            background: var(--secondary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+        }
+        .ministry-tag:hover {
+            transform: scale(1.05);
+        }
+        #events {
+            background: var(--bg-dark);
+            color: var(--text-light);
+        }
+        #events h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .events-slider {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        .slide {
+            display: none;
+            padding: 2rem;
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+        }
+        .slide.active {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+        .slide-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .slide-nav:hover {
+            background: var(--accent-color);
+        }
+        .slide-nav.prev { left: 10px; }
+        .slide-nav.next { right: 10px; }
+        #sermons {
+            background: var(--bg-light);
+        }
+        #sermons h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+        .sermon-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .sermon-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+        .sermon-item:hover {
+            transform: translateY(-5px);
+        }
+        .sermon-item a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+        #contact {
+            background: var(--bg-dark);
+            color: var(--text-light);
+        }
+        #contact h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        input, textarea {
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255,255,255,0.1);
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+        input::placeholder, textarea::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+        #map {
+            height: 300px;
+            border-radius: 10px;
+            width: 100%;
+        }
+        footer {
+            background: var(--primary-color);
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .social-links a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+            padding: 1rem; /* Touch-friendly */
+            border-radius: 50%;
+        }
+        .social-links a:hover {
+            color: var(--secondary-color);
+            background: rgba(255,255,255,0.1);
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(100%); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+            }
+            #hero h1 { font-size: 2.5rem; }
+            #hero p { font-size: 1.2rem; }
+            .btn { padding: 1rem; min-width: auto; }
+            .contact-grid { grid-template-columns: 1fr; }
+            section { padding: 3rem 2%; }
+            .services-grid, .sermon-list, .history-timeline { grid-template-columns: 1fr; }
+            .ministries-list { flex-direction: column; align-items: center; }
+            .slide-nav { padding: 0.5rem; width: 40px; height: 40px; font-size: 0.8rem; }
+            input, textarea { font-size: 16px; } /* Prevent zoom on iOS */
+        }
+        @media (max-width: 480px) {
+            nav { padding: 1rem 2%; }
+            .logo { font-size: 1.2rem; }
+            section { padding: 2rem 2%; }
+            #hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Macedonia Baptist Church</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#ministries">Ministries</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#sermons">Sermons</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <h1>Welcome to Macedonia Baptist Church</h1>
+        <p>No Limits in Faith and Community</p>
+        <a href="#services" class="btn">Join Us Today</a>
+    </section>
+
+    <section id="about">
+        <h2>Our History</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">Macedonia Baptist Church, located at 803 Pearl Ave S, Douglas, GA 31533, stands as a cornerstone of the African American community in Coffee County, Georgia. As a historic Southern Baptist congregation, it embodies resilience, faith, and community service amid the challenges of the Jim Crow era and beyond.</p>
+        <div class="history-timeline">
+            <div class="timeline-item">
+                <h3>Early 1920s</h3>
+                <p>The earliest documented reference appears in a 1922 edition of The Douglas Enterprise, where Rev. I. M. Young is identified as its pastor, highlighting its role in the community during segregation.</p>
+            </div>
+            <div class="timeline-item">
+                <h3>1926</h3>
+                <p>Mrs. W. S. Swearingen delivers a welcome address on behalf of the church at the Georgia Annual Conference, signaling its growing prominence within South Georgia's Baptist networks.</p>
+            </div>
+            <div class="timeline-item">
+                <h3>Today</h3>
+                <p>Continuing as a vibrant congregation with the motto "No Limits," emphasizing boundless faith, community outreach, and active social media presence.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2>Worship Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-clock"></i>
+                <h3>Sunday Worship</h3>
+                <p>11:30 a.m. - Join us for uplifting praise and teaching.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-book-open"></i>
+                <h3>Wednesday Bible Study</h3>
+                <p>7:00 p.m. - Deepen your understanding of Scripture.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-prayer-alt"></i>
+                <h3>Prayer Meeting</h3>
+                <p>Every Friday at 6:00 p.m. - Come unite in prayer.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="ministries">
+        <h2>Our Ministries</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">We offer a variety of ministries to serve all ages and needs in our community.</p>
+        <div class="ministries-list">
+            <span class="ministry-tag">Youth Group</span>
+            <span class="ministry-tag">Women's Fellowship</span>
+            <span class="ministry-tag">Men's Bible Study</span>
+            <span class="ministry-tag">Children's Church</span>
+            <span class="ministry-tag">Community Outreach</span>
+            <span class="ministry-tag">Senior Care</span>
+        </div>
+    </section>
+
+    <section id="events">
+        <h2>Upcoming Events</h2>
+        <div class="events-slider">
+            <div class="slide active">
+                <h3>Family & Friends Day Celebration</h3>
+                <p>Sunday, October 12, 2025 | 11:30 a.m.<br>Join us as we come together in love, fellowship, and worship for our annual Family & Friends Day Service.</p>
+            </div>
+            <div class="slide">
+                <h3>Baptism Service</h3>
+                <p>Sunday, October 19, 2025 | After Worship - Witness new commitments to faith.</p>
+            </div>
+            <div class="slide">
+                <h3>Thanksgiving Outreach</h3>
+                <p>November 23, 2025 | 9:00 a.m. - Volunteer to serve meals to the community.</p>
+            </div>
+            <button class="slide-nav prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+            <button class="slide-nav next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </section>
+
+    <section id="sermons">
+        <h2>Recent Sermons</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">Visit our <a href="https://www.facebook.com/MBCNoLimits/" target="_blank" style="color: var(--secondary-color);">Facebook page</a> for live streams and recent sermons.</p>
+        <div class="sermon-list">
+            <div class="sermon-item">
+                <h3>No Limits in Faith</h3>
+                <p>October 5, 2025 - Rev. Frank Robinson II</p>
+                <a href="https://www.facebook.com/MBCNoLimits/" target="_blank">Watch on Facebook</a>
+            </div>
+            <div class="sermon-item">
+                <h3>Resilience Through Trials</h3>
+                <p>September 28, 2025 - Guest Speaker</p>
+                <a href="https://www.facebook.com/MBCNoLimits/" target="_blank">Watch on Facebook</a>
+            </div>
+            <div class="sermon-item">
+                <h3>Community Strength</h3>
+                <p>September 21, 2025 - Rev. Frank Robinson II</p>
+                <a href="https://www.facebook.com/MBCNoLimits/" target="_blank">Watch on Facebook</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-grid">
+            <form id="contactForm" data-netlify="true" name="contact">
+                <input type="hidden" name="form-name" value="contact">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit" class="btn" style="background: var(--accent-color); align-self: flex-start;">Send Message</button>
+            </form>
+            <div>
+                <p><i class="fas fa-map-marker-alt"></i> 803 Pearl Ave S, Douglas, GA 31533</p>
+                <p><i class="fas fa-phone"></i> (912) 384-3132</p>
+                <iframe id="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3409.290123456789!2d-82.84567891234567!3d31.47654321234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88f9e4f123456789%3A0xabcdef1234567890!2s803+Pearl+Ave+S%2C+Douglas%2C+GA+31533!5e0!3m2!1sen!2sus!4v1728134400000" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Macedonia Baptist Church. All rights reserved.</p>
+        <div class="social-links">
+            <a href="https://www.facebook.com/MBCNoLimits/" target="_blank"><i class="fab fa-facebook"></i></a>
+        </div>
+        <p>Give Online: <a href="https://www.facebook.com/MBCNoLimits/" style="color: var(--secondary-color);">Learn More</a></p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Mobile hamburger menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Close mobile menu on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            document.querySelector('header').style.background = window.scrollY > 100 ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,0.95)';
+        });
+
+        // Events slider
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        function changeSlide(direction) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        setInterval(() => changeSlide(1), 5000); // Auto-slide every 5 seconds
+
+        // Contact form submission (fallback for non-Netlify)
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            if (typeof window.netlify !== 'undefined') {
+                // Netlify handles it
+                return;
+            }
+            e.preventDefault();
+            alert('Thank you for your message! We\'ll get back to you soon. (Deploy on Netlify for full functionality.)');
+            this.reset();
+        });
+
+        // Parallax effect on hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            document.getElementById('hero').style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+    </script>
+</body>
+</html>
