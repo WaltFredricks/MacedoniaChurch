@@ -8,7 +8,7 @@ This repository contains a modern, single-page website, a comprehensive historic
 
 - `index.html`: A responsive, JavaScript-enhanced website with sections for history, services, ministries, events, sermons, and a contact form. It features a modern aesthetic, mobile-optimized UI, and integration with Netlify for form submissions and the church's Facebook page for live sermons.
 - `report.pdf`: A detailed historical report on Macedonia Baptist Church, covering its origins in the 1920s, key figures like Rev. I. M. Young, and its current role in Douglas, GA.
-- `report.dtx`: The LaTeX source code used to generate `report.pdf`, structured for easy modification and recompilation.
+- `ChurchHistory.dtx`: The LaTeX source code used to generate `report.pdf`, structured for easy modification and recompilation.
 
 ## License
 
